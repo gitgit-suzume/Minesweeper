@@ -1,0 +1,197 @@
+.container{
+	/*width: 480px;*/
+	height: auto;
+	padding: 10px;
+	margin: 5px auto;
+	-moz-user-select:none;
+	background: #c0c0c0;
+	border: 1px solid rgba(0,0,0,1);
+}
+/*二级菜单*/
+.nav ul li a{
+	float: left;
+	background: white;
+	padding: 0 10px;
+	border: 1px solid #DBDBDB;
+}
+.nav ul li a:hover{
+	text-decoration: none;
+	background: #E5F3FF;
+}
+.nav ul li ul{
+	position: absolute;
+	top:34px;
+	display: none;
+}
+.nav ul li ul li{
+	float: none;
+}
+.nav ul li ul li a{
+	width: 100px;
+	clear:both;
+	border: 1px solid #DBDBDB;
+}
+.nav ul li:hover ul {
+	display: block;
+}
+.minesField{
+	clear: both;
+}
+/*信息栏*/
+.info{
+	clear: both;
+	color: red;
+	font: bold 20px 'SimHei';
+	margin: 25px 0 10px 0;
+	width: auto;
+	height: auto;
+	box-shadow: 3px 3px 3px rgba(0,0,0,0.25) inset;
+	border-right: 2px solid rgba(255,255,255,1);
+	border-bottom: 2px solid rgba(255,255,255,1);
+	padding: 8px 6px 5px 9px;
+}
+.minesCount{
+	float: left;
+	padding: 1px 3px;
+	background: black;
+}
+.timeCount{
+	float: right;
+	padding: 1px 3px;
+	background: black;
+}
+.expression{
+	width: 26px;
+	height: 26px;
+	margin: 0 auto;
+	background-size: 100% 100%;
+}
+.smile{
+	background: url("../img/smile.png") no-repeat;
+	background-size: 100% 100%;
+}
+.waiting{
+	background: url("../img/waiting.png") no-repeat;
+	background-size: 100% 100%;
+}
+.youWin{
+	background: url("../img/youWin.png") no-repeat;
+	background-size: 100% 100%;
+}
+.youFail{
+	background: url("../img/youFail.png") no-repeat;
+	background-size: 100% 100%;
+}
+/*雷区各种状态*/
+.minesFieldContainer{
+	padding: 4px 0 0 4px;
+	box-shadow: 4px 4px 4px rgba(0,0,0,0.25) inset;
+	border-right: 4px solid rgba(255,255,255,1);
+	border-bottom: 4px solid rgba(255,255,255,1);
+
+}
+/*没打开的状态*/
+.minesField tr td {
+	margin: 0 1px 1px 0;
+	width: 20px;
+	height: 20px;
+	box-shadow: -3px -3px 3px rgba(0,0,0,0.5) inset;
+	box-sizing:border-box;
+	border-top: 1px solid rgba(255,255,255,1);
+	border-left: 1px solid rgba(255,255,255,1);
+}
+/*被标记*/
+.mark{
+	background: url("../img/flag.png") no-repeat center;
+}
+/*移除标记*/
+.removeMark{
+	font:normal 16px 'SimHei';
+	color: #000;
+}
+/*标记错误*/
+.errorMark{
+	color: #FF0000;
+	font:normal 15px 'SimHei' !important;
+}
+/*踩到雷*/
+.stepMines{
+	background: #FF0000 url("../img/mines.png") no-repeat center !important ;
+}
+/*被点开*/
+.blankClickon{
+	box-shadow: 0 0 0 !important;
+}
+/*有地雷*/
+.existMines{
+	background: url("../img/mines.png") no-repeat center;
+}
+/*标记雷数*/
+.minesField tr td {
+	font: bold 14px/14px 'Microsoft YaHei';
+	text-align: center;
+}
+.oneMines{
+	color:#0000FF;
+}
+.twoMines{
+	color: #008000;
+}
+.threeMines{
+	color: #FF0000;
+}
+.fourMines{
+	color:#000080;
+}
+.fiveMines{
+	color: #800000;
+}
+.sixMines{
+	color: #008080;
+}
+.sevenMines{
+	color: #000;
+}
+.eightMines{
+	color: #808080;
+}
+.setMines{
+	width: 138px;
+	height: 130px;
+	padding: 10px;
+	margin: 0 auto;
+	clear: both;
+	background: #F0F0F0;
+	border:1px solid black;
+	color: black;
+	font:normal 16px 'Microsoft YaHei';
+	position: absolute;
+	display: none;
+}
+.setMines div{
+	float: left;
+	clear: both;
+	margin: 5px 0 0 0;
+}
+.setMines span{
+	float: left;
+}
+.setMines input{
+	float: left;
+	width: 72px;
+	height: 16px;
+	float: left;
+}
+.buttonContainer{
+	width: 110px;
+	height:auto;
+	float: right;
+}
+.setMines button{
+	width: 50px;
+	height: 25px;
+}
+.cancel{
+	margin:0 0 0 10px;
+	float: right;
+}
