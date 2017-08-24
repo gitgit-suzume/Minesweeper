@@ -18,6 +18,7 @@ var Minesweeper = new Object({
 		//游戏情况,-1为失败,0为游戏进行中,1为胜利
 		gameOver:0,
 	},
+	//描绘计时区的函数
 	setMinesCount: function(mines){
 		if(mines < 0){
 			return;
@@ -30,6 +31,7 @@ var Minesweeper = new Object({
 			$('.minesCount span')[0].innerHTML = mines;
 		}
 	},
+	// 游戏初始化
 	begin:function(rowsNum,colsNum,minesNum){
 		var that=this;
 		that.val.gameOver = 0;
@@ -140,61 +142,45 @@ var Minesweeper = new Object({
 				}
 				// 计算格子周围地雷数目
 				try{
-					if(minesNotes[i-1][j-1].mines == -1){
+					if((minesNotes[i-1][j-1].mines||true) == -1){
 						count ++;
 					}					
-				} catch (error){
-					;
-				}
+				} catch (error){;}
 				try{
 					if(minesNotes[i-1][j].mines == -1){
 						count ++;
 					}					
-				} catch (error){
-					;
-				}
+				} catch (error){;}
 				try{
 					if(minesNotes[i-1][j+1].mines == -1){
 						count ++;
 					}					
-				} catch (error){
-					;
-				}
+				} catch (error){;}
 				try{
 					if(minesNotes[i][j-1].mines == -1){
 						count ++;
 					}					
-				} catch (error){
-					;
-				}
+				} catch (error){;}
 				try{
 					if(minesNotes[i][j+1].mines == -1){
 						count ++;
 					}					
-				} catch (error){
-					;
-				}
+				} catch (error){;}
 				try{
 					if(minesNotes[i+1][j-1].mines == -1){
 						count ++;
 					}					
-				} catch (error){
-					;
-				}
+				} catch (error){;}
 				try{
 					if(minesNotes[i+1][j].mines == -1){
 						count ++;
 					}					
-				} catch (error){
-					;
-				}
+				} catch (error){;}
 				try{
 					if(minesNotes[i+1][j+1].mines == -1){
 						count ++;
 					}					
-				} catch (error){
-					;
-				}
+				} catch (error){;}
 				that.val.minesNotes[i][j].mines = count;
 			}
 		}
@@ -234,20 +220,15 @@ var Minesweeper = new Object({
 	},
 
 	//玩家操作
-	//判断传入格子是否应该打开，是否为炸弹
+	//打开盒子，内含
 	openBox: function(div){
-		var colNum = div.cellIndex;
-		var rowNum = div.parentNode.rowIndex;
-		var that = this;
-		var flag = true;
-		//检测传入的行列数是否正确
-		var mines;
-		try {
-			mines = that.val.minesNotes[rowNum][colNum].mines;
-		} catch (error){
-			return true;
-		}
-		//如果格子已经被打开
+		var colNum = div.cellIndex,
+			rowNum = div.parentNode.rowIndex,
+			that = this,
+			flag = true,
+            mines = that.val.minesNotes[rowNum][colNum].mines;;
+
+        //如果格子已经被打开
 		if (that.val.minesNotes[rowNum][colNum].check && div.className.indexOf('blankClickon') >= 0){
 			return true;
 		}
@@ -268,46 +249,30 @@ var Minesweeper = new Object({
 			div.parentNode.parentNode.rows[rowNum].cells[colNum].className = 'blankClickon';
 			that.val.minesNotes[rowNum][colNum].check = true;
 			try {
-				flag = flag && !!that.openBox(div.parentNode.parentNode.rows[rowNum - 1].cells[colNum - 1]);
-			} catch(error) {
-				;
-			}
+				flag = flag && (!!that.openBox(div.parentNode.parentNode.rows[rowNum - 1].cells[colNum - 1]));
+			} catch(error) {;}
 			try {
 				flag = flag && !!that.openBox(div.parentNode.parentNode.rows[rowNum - 1].cells[colNum])
-			} catch(error) {
-				;
-			}
+			} catch(error) {;}
 			try{
 				flag = flag && !!that.openBox(div.parentNode.parentNode.rows[rowNum - 1].cells[colNum + 1]);
-			} catch(error){
-				;
-			}
+			} catch(error){	;}
 
 			try{
 				flag = flag && !!that.openBox(div.parentNode.parentNode.rows[rowNum].cells[colNum - 1]);
-			} catch(error){
-				;
-			}
+			} catch(error){	;}
 			try{
 				flag = flag && !!that.openBox(div.parentNode.parentNode.rows[rowNum].cells[colNum + 1]);
-			} catch(error){
-				;
-			}
+			} catch(error){	;}
 			try {
 				flag = flag && !!that.openBox(div.parentNode.parentNode.rows[rowNum + 1].cells[colNum - 1]);
-			} catch (error){
-				;
-			}
+			} catch (error){;}
 			try{
 				flag = flag && !!that.openBox(div.parentNode.parentNode.rows[rowNum + 1].cells[colNum]);
-			} catch (error){
-				;
-			}
+			} catch (error){;}
 			try{
 				flag = flag && !!that.openBox(div.parentNode.parentNode.rows[rowNum + 1].cells[colNum + 1]);
-			} catch (error){
-				;
-			}
+			} catch (error){;}
 		}
 		//踩雷
 		if(mines == -1){
@@ -386,58 +351,42 @@ var Minesweeper = new Object({
 			if(temp.rows[rowNum - 1].cells[colNum - 1].className.indexOf('mark') >= 0){
 				flagCount ++;
 			}
-		} catch(error){
-			;
-		}
+		} catch(error){	;}
 		try{
 			if(temp.rows[rowNum - 1].cells[colNum ].className.indexOf('mark') >= 0){
 				flagCount ++;
 			}
-		} catch(error){
-			;
-		}
+		} catch(error){	;}
 		try{
 			if(temp.rows[rowNum - 1].cells[colNum + 1].className.indexOf('mark') >= 0){
 				flagCount ++;
 			}
-		} catch(error){
-			;
-		}
+		} catch(error){	;}
 		try{
 			if(temp.rows[rowNum].cells[colNum - 1].className.indexOf('mark') >= 0){
 				flagCount ++;
 			}
-		} catch(error){
-			;
-		}
+		} catch(error){	;}
 		try{
 			if(temp.rows[rowNum].cells[colNum + 1].className.indexOf('mark') >= 0){
 				flagCount ++;
 			}
-		} catch(error){
-			;
-		}
+		} catch(error){	;}
 		try{
 			if(temp.rows[rowNum + 1].cells[colNum - 1].className.indexOf('mark') >= 0){
 				flagCount ++;
 			}
-		} catch(error){
-			;
-		}
+		} catch(error){	;}
 		try{
 			if(temp.rows[rowNum + 1].cells[colNum].className.indexOf('mark') >= 0){
 				flagCount ++;
 			}
-		} catch(error){
-			;
-		}
+		} catch(error){	;}
 		try{
 			if(temp.rows[rowNum + 1].cells[colNum + 1].className.indexOf('mark') >= 0){
 				flagCount ++;
 			}
-		} catch(error){
-			;
-		}
+		} catch(error){;}
 		return flagCount == mines;
 	},
 	// 松开小格子,allpress是布尔型,true表示左右键同时按下
@@ -608,36 +557,20 @@ $(window).ready(function(){
 			if(doubleClick){
 				if(!flag){
 					Minesweeper.upBoxes(e.target,true);
-				} else{
-					var colNum = e.target.cellIndex;
-					var rowNum = e.target.parentNode.rowIndex;
-					var temp = e.target.parentNode.parentNode;
-					Minesweeper.openBox(e.target);
-					try{
-						Minesweeper.openBox(temp.rows[rowNum - 1].cells[colNum - 1]);
-					}catch(e){;}
-					try{
-						Minesweeper.openBox(temp.rows[rowNum - 1].cells[colNum]);
-					}catch(e){;}
-					try{
-						Minesweeper.openBox(temp.rows[rowNum - 1].cells[colNum + 1]);
-					}catch(e){;}
-					try{
-						Minesweeper.openBox(temp.rows[rowNum].cells[colNum - 1]);
-					}catch(e){;}
-					try{
-						Minesweeper.openBox(temp.rows[rowNum].cells[colNum + 1]);
-					}catch(e){;}
-					try{
-						Minesweeper.openBox(temp.rows[rowNum + 1].cells[colNum - 1]);
-					}catch(e){;}
-					try{
-						Minesweeper.openBox(temp.rows[rowNum + 1].cells[colNum]);
-					}catch(e){;}
-					try{
-						Minesweeper.openBox(temp.rows[rowNum + 1].cells[colNum + 1]);
-					}catch(e){;}
-				}
+				} else {
+                    var colNum = e.target.cellIndex;
+                    var rowNum = e.target.parentNode.rowIndex;
+                    var temp = e.target.parentNode.parentNode;
+                    Minesweeper.openBox(e.target);
+                    Minesweeper.openBox(temp.rows[rowNum - 1].cells[colNum - 1] || null);
+                    Minesweeper.openBox(temp.rows[rowNum - 1].cells[colNum] || null);
+                    Minesweeper.openBox(temp.rows[rowNum - 1].cells[colNum + 1] || null);
+                    Minesweeper.openBox(temp.rows[rowNum].cells[colNum - 1] || null);
+                    Minesweeper.openBox(temp.rows[rowNum].cells[colNum + 1] || null);
+                    Minesweeper.openBox(temp.rows[rowNum + 1].cells[colNum - 1] || null);
+                    Minesweeper.openBox(temp.rows[rowNum + 1].cells[colNum] || null);
+                    Minesweeper.openBox(temp.rows[rowNum + 1].cells[colNum + 1] || null);
+                }
 				doubleClick = false;
 			}
 		}
