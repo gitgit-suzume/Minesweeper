@@ -10,6 +10,10 @@
 
 ![Alt text](/readmeImg/win.gif "操作示意图-获胜")
 
+## 运行
+
+直接运行项目根目录下的 Minesweeper.html 即可
+
 ## 功能
 * 支持左右键快速开雷
 * 自定义或选择初、中、高游戏级别
