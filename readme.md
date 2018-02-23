@@ -7,6 +7,7 @@
 ## 效果预览图
 
 ![Alt text](/readmeImg/preview.gif "操作示意图-操作")
+
 ![Alt text](/readmeImg/win.gif "操作示意图-获胜")
 
 ## 功能
